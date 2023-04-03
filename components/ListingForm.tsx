@@ -7,16 +7,16 @@ import { Formik, Form } from 'formik'
 import Input from './Input'
 import ImageUpload from './ImageUpload'
 
-import { IHome } from '../types/home'
+import { IBlockchain } from '../types/blockchain'
 import { fetchJSON } from '../lib/fetchJSON'
 
 const ListingSchema = Yup.object().shape({
   title: Yup.string().trim().required(),
   description: Yup.string().trim().required(),
   price: Yup.number().positive().integer().min(1).required(),
-  guests: Yup.number().positive().integer().min(1).required(),
-  beds: Yup.number().positive().integer().min(1).required(),
-  baths: Yup.number().positive().integer().min(1).required(),
+  tps: Yup.number().positive().integer().min(1).required(),
+  assetValue: Yup.number().positive().integer().min(1).required(),
+  nodes: Yup.number().positive().integer().min(1).required(),
 })
 
 const ListingForm = ({
@@ -58,7 +58,7 @@ const ListingForm = ({
   }
 
   const handleOnSubmit = async (
-    values: Omit<IHome, 'image' | 'id' | 'createdAt' | 'updatedAt' | 'ownerId'>
+    values: Omit<IBlockchain, 'image' | 'id' | 'createdAt' | 'updatedAt' | 'ownerId'>
   ) => {
     console.log(values)
     let toastId
@@ -85,9 +85,9 @@ const ListingForm = ({
     title: '',
     description: '',
     price: 0,
-    guests: 1,
-    beds: 1,
-    baths: 1,
+    tps: 1,
+    nodes: 1,
+    assetValue: 1,
     ownerId: '',
   }
 
@@ -137,26 +137,26 @@ const ListingForm = ({
 
               <div className='flex space-x-4'>
                 <Input
-                  name='guests'
+                  name='nodes'
                   type='number'
                   min='0'
-                  label='Guests'
+                  label='Nodes'
                   placeholder='2'
                   disabled={disabled}
                 />
                 <Input
-                  name='beds'
+                  name='tps'
                   type='number'
                   min='0'
-                  label='Beds'
+                  label='Tps'
                   placeholder='1'
                   disabled={disabled}
                 />
                 <Input
-                  name='baths'
+                  name='assetValue'
                   type='number'
                   min='0'
-                  label='Baths'
+                  label='Asset Value'
                   placeholder='1'
                   disabled={disabled}
                 />
@@ -181,8 +181,8 @@ const ListingForm = ({
 
 interface IListingForm {
   initialValues?: Pick<
-    IHome,
-    'baths' | 'beds' | 'title' | 'description' | 'price' | 'guests' | 'image'
+    IBlockchain,
+    'nodes' | 'tps' | 'title' | 'description' | 'price' | 'assetValue' | 'image'
   >
   redirectPath: string
   buttonText: string

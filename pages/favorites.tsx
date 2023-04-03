@@ -4,7 +4,7 @@ import LoadingSpinner from 'components/LoadingSpinner'
 import { useFavorites } from 'hooks/useFavorites'
 
 const Favorites = () => {
-  const { favorites: homes, isLoading, isValidating } = useFavorites()
+  const { favorites: blockchains, isLoading, isValidating } = useFavorites()
 
   if (isLoading || isValidating)
     return (
@@ -16,13 +16,13 @@ const Favorites = () => {
       </Layout>
     )
 
-  if (homes) {
+  if (blockchains) {
     return (
       <Layout>
         <h1 className='mb-10 text-center text-xl font-medium text-gray-800'>
           My favorites
         </h1>
-        <Grid homes={homes} />
+        <Grid blockchains={blockchains} />
       </Layout>
     )
   }

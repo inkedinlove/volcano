@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -11,7 +12,6 @@ import {
   HomeIcon,
   LogoutIcon,
   PlusIcon,
-  OfficeBuildingIcon,
   UserIcon,
 } from '@heroicons/react/outline'
 import AuthModal from './AuthModal'
@@ -23,12 +23,12 @@ interface ILayoutProps {
 
 const menuItems = [
   {
-    label: 'List a new home',
+    label: 'Create a new note',
     icon: PlusIcon,
     href: '/create',
   },
   {
-    label: 'My homes',
+    label: 'My blockchain notes',
     icon: HomeIcon,
     href: '/homes',
   },
@@ -54,25 +54,25 @@ const Layout = ({ children }: ILayoutProps) => {
   return (
     <>
       <Head>
-        <title>HomeAway</title>
+        <title>Blockcarve</title>
       </Head>
-      <div className='flex min-h-screen flex-col '>
-        <header className='sticky top-0 z-10 h-16 w-full bg-white/90 shadow-sm drop-shadow-sm backdrop-blur-md'>
+      <div className='flex min-h-screen flex-col bg-black '>
+        <header className='sticky top-0 z-10 h-16 w-full bg-green/90 shadow-sm drop-shadow-sm backdrop-blur-md'>
           <div className='container mx-auto h-full'>
             <div className='flex h-full items-center justify-between space-x-4 px-4'>
               <Link className='flex items-center space-x-1' href='/'>
-                <OfficeBuildingIcon className='h-8 w-8 shrink-0 text-blue-700/80' />
-                <span className='text-xl font-semibold tracking-wide text-gray-800'>
-                  Home<span className='text-blue-700'>Away</span>
+                <img src="/bclogo-light.png" alt="blockcarve-logo" className='h-8 w-8' />
+                <span className='text-lg font-medium tracking-tighter text-teal-400'>
+                  BLOCKCARVE
                 </span>
               </Link>
               <div className='flex items-center space-x-4'>
                 <button
                   type='button'
                   onClick={() => (user ? router.push('/create') : openModal())}
-                  className='hidden rounded-md px-3 py-1 font-medium text-gray-700 transition hover:bg-gray-100 sm:block'
+                  className='hidden rounded-md px-3 py-1 font-medium text-gray-300 transition hover:bg-green-600 sm:block'
                 >
-                  List your home
+                  + note
                 </button>
                 {isLoadingUser ? (
                   <div className='h-8 w-[75px] animate-pulse rounded-md bg-gray-100/70' />
@@ -166,7 +166,7 @@ const Layout = ({ children }: ILayoutProps) => {
                   <button
                     type='button'
                     onClick={openModal}
-                    className='ml-4 rounded-md bg-blue-600 px-4 py-1 text-white transition hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50'
+                    className='ml-4 rounded-md bg-green-600 px-4 py-1 text-white transition hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50'
                   >
                     Log in
                   </button>

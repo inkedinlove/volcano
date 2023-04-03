@@ -5,20 +5,20 @@ import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { unstable_getServerSession } from 'next-auth/next'
 import { GetServerSideProps } from 'next'
 
-const Homes = ({ homes = [] }) => {
+const Blockchains = ({ blockchains = [] }) => {
   return (
     <Layout>
-      <h1 className='text-xl font-medium text-gray-800'>My homes</h1>
+      <h1 className='text-xl font-medium text-gray-800'>My Blockchains</h1>
       <p className='text-gray-500'>
-        Manage your homes and update your listings
+        Manage your blockchains and update your notes
       </p>
       <div className='mt-8'>
-        <Grid homes={homes} />
+        <Grid blockchains={blockchains} />
       </div>
     </Layout>
   )
 }
-export default Homes
+export default Blockchains
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await unstable_getServerSession(
@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
   try {
-    const homes = await prisma.home.findMany({
+    const blockchains = await prisma.blockchain.findMany({
       where: { owner: { email: session.user.email } },
       orderBy: { createdAt: 'desc' },
     })
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       'public, max-age=31536000, immutable'
     )
     return {
-      props: { homes: JSON.parse(JSON.stringify(homes)) },
+      props: { blockchains: JSON.parse(JSON.stringify(blockchains)) },
     }
   } catch (error) {
     console.error(error)

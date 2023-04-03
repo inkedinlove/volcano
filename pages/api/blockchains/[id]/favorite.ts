@@ -16,12 +16,12 @@ export default async function handle(
     })
   }
 
-  // Retrieve home ID from request path parameter
+  // Retrieve blockchain ID from request path parameter
   const { id } = req.query
   if (req.method === 'PUT') {
     try {
-      // Add home to user's favorites
-      await prisma.home.update({
+      // Add blockchain to user's favorites
+      await prisma.blockchain.update({
         where: { id: id as string },
         data: {
           favoriteBy: {
@@ -39,10 +39,10 @@ export default async function handle(
         .json({ message: 'Unable to add home to favorites' })
     }
   }
-  // Remove home from user's favorites
+  // Remove blockchain from user's favorites
   else if (req.method === 'DELETE') {
     try {
-      await prisma.home.update({
+      await prisma.blockchain.update({
         where: { id: id as string },
         data: {
           favoriteBy: {
@@ -52,12 +52,12 @@ export default async function handle(
       })
       res
         .status(200)
-        .json({ message: "Successfully removed home from user's favorites" })
+        .json({ message: "Successfully removed blockchain from user's favorites" })
     } catch (error) {
       console.log(error)
       return res
         .status(500)
-        .json({ message: "Unable to remove home of user's favorites" })
+        .json({ message: "Unable to remove blockchain of user's favorites" })
     }
   }
   // Return error if request method is not PUT or DELETE

@@ -22,17 +22,17 @@ export default async function handler(
 
   if (req.method === 'GET') {
     try {
-      // Retrieve home ID from request body
+      // Retrieve blockchain ID from request body
       const favorite = await prisma.user.findMany({
         where: { id: id },
         select: {
-          favoriteHomes: true,
+          favoriteblockchains: true,
         },
       })
-      // Return favoritesHomes array empty or not
-      const favoriteHomes =
-        favorite.length === 0 ? favorite : favorite[0].favoriteHomes
-      res.status(200).json(favoriteHomes)
+      // Return favoritesBlockchains array empty or not
+      const favoriteblockchains =
+        favorite.length === 0 ? favorite : favorite[0].favoriteblockchains
+      res.status(200).json(favoriteblockchains)
     } catch (error) {
       res.status(500).json({ message: 'Internal server error' })
     }

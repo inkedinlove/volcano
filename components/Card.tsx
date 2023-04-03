@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { HeartIcon } from '@heroicons/react/solid'
-import { IHome } from '../types/home'
+import { IBlockchain } from '../types/blockchain'
 import { useEffect, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useSession } from 'next-auth/react'
 import { useFavorites } from 'hooks/useFavorites'
 import { useModal } from 'hooks/useModal'
 
-interface ICardsProps extends IHome {
+interface ICardsProps extends IBlockchain {
   isFavorite?: boolean
 }
 
@@ -16,9 +16,8 @@ const Card = ({
   id = '',
   image = '',
   title = '',
-  guests = 0,
-  beds = 0,
-  baths = 0,
+  tps = '0',
+  nodes = '0',
   price = 0,
   isFavorite = false,
 }: ICardsProps) => {
@@ -32,27 +31,27 @@ const Card = ({
     }
   }, [isFavorite])
 
-  const addToFavorites = (homeID: string) =>
-    fetch(`/api/homes/${homeID}/favorite`, { method: 'PUT' })
-  const removeFromFavorites = (homeID: string) =>
-    fetch(`/api/homes/${homeID}/favorite`, { method: 'DELETE' })
+  const addToFavorites = (blockchainID: string) =>
+    fetch(`/api/blockchains/${blockchainID}/favorite`, { method: 'PUT' })
+  const removeFromFavorites = (blockchainID: string) =>
+    fetch(`/api/blockchains/${blockchainID}/favorite`, { method: 'DELETE' })
 
-  const debouncedSubmitLike = useDebouncedCallback(async (homeID: string) => {
+  const debouncedSubmitLike = useDebouncedCallback(async (blockchainID: string) => {
     if (session) {
       if (favorite) {
-        await addToFavorites(homeID)
+        await addToFavorites(blockchainID)
         mutate()
       } else {
-        removeFromFavorites(homeID)
+        removeFromFavorites(blockchainID)
         mutate(
-          favorites.filter((home: IHome) => home.id !== homeID),
+          favorites.filter((blockchain: IBlockchain) => blockchain.id !== blockchainID),
           { revalidate: false }
         )
       }
     }
   }, 100)
   return (
-    <Link className='block w-full' href={`/homes/${id}`}>
+    <Link className='block w-full' href={`/blockchains/${id}`}>
       <div className='relative'>
         <div className='aspect-w-16 aspect-h-9 overflow-hidden rounded-lg bg-gray-200 shadow'>
           {image ? (
@@ -95,15 +94,15 @@ const Card = ({
       </div>
       <ol className='mt-1 inline-flex items-center space-x-1 text-gray-500'>
         <li>
-          <span>{guests ?? 0} guests</span>
+          <span>{price ?? 0} price</span>
           <span aria-hidden='true'> · </span>
         </li>
         <li>
-          <span>{beds ?? 0} beds</span>
+          <span>{tps ?? 0} tps</span>
           <span aria-hidden='true'> · </span>
         </li>
         <li>
-          <span>{baths ?? 0} baths</span>
+          <span>{nodes ?? 0} nodes</span>
         </li>
       </ol>
       <p className='mt-2'>

@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta
           name='description'
-          content='HomeAway is a fullstack Airbn-like web application, build with NextJS, NextAuth, TailwindCSS Prisma and Supabase'
+          content='Blockcarve is a discovery platform for blockchain enthusiasts and developers.'
         />
         <meta
           name='title'
@@ -15,7 +15,7 @@ export default function Document() {
         <link
           rel='apple-touch-icon'
           sizes='180x180'
-          href='/apple-touch-icon.png'
+          href='/favicon.png'
         />
         <link
           rel='icon'
@@ -27,7 +27,7 @@ export default function Document() {
           rel='icon'
           type='image/png'
           sizes='16x16'
-          href='/favicon-16x16.png'
+          href='/favicon.png'
         />
         <link rel='manifest' href='/site.webmanifest' />
       </Head>

@@ -38,9 +38,9 @@ const sendVerificationRequest = async ({
   })
   const emailTemplate = Handlebars.compile(emailFile)
   await transporter.sendMail({
-    from: `"HomeAway" ${process.env.EMAIL_FROM}`,
+    from: `"Blockcarve" ${process.env.EMAIL_FROM}`,
     to: identifier,
-    subject: 'Your sign-in link for HomeAway',
+    subject: 'Welcome to Blockcarve!',
     html: emailTemplate({
       base_url: process.env.NEXT_PUBLIC_VERCEL_URL || process.env.NEXTAUTH_URL,
       signin_url: url,

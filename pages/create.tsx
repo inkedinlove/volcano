@@ -4,11 +4,11 @@ import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { unstable_getServerSession } from 'next-auth/next'
 import { GetServerSideProps } from 'next'
 
-import { IHome } from '../types/home'
+import { IBlockchain } from '../types/blockchain'
 
 export default function Create() {
-  const addHome = async (data: IHome) => {
-    await fetch('/api/homes', {
+  const addBlockchain = async (data: IBlockchain) => {
+    await fetch('/api/Blockchains', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,15 +20,15 @@ export default function Create() {
   return (
     <Layout>
       <div className='mx-auto max-w-screen-sm'>
-        <h1 className='text-xl font-medium text-gray-500'>List your home</h1>
+        <h1 className='text-xl font-medium text-gray-500'>List your blockchain</h1>
         <p className='text-gray-500'>
-          Fill out the form below to list a new home.
+          Fill out the form below to list a new blockchain.
         </p>
         <div className='mt-8'>
           <ListingForm
             buttonText='Add home'
             redirectPath='/'
-            onSubmit={addHome}
+            onSubmit={addBlockchain}
           />
         </div>
       </div>

@@ -192,7 +192,7 @@ const AuthModal = ({
                     <Link className='flex items-center space-x-1' href='/'>
                       <OfficeBuildingIcon className='h-8 w-8 shrink-0 text-blue-700/80' />
                       <span className='text-xl font-semibold tracking-wide'>
-                        Home<span className='text-blue-500'>Away</span>
+                        Block<span className='text-blue-500'>carve</span>
                       </span>
                     </Link>
                   </div>
@@ -206,8 +206,7 @@ const AuthModal = ({
 
                   {!showSignIn ? (
                     <Dialog.Description className='mt-2 text-center text-base text-gray-500'>
-                      Please create an account to list your homes and bookmark
-                      your favorite ones.
+                      Please create an account to start your blockchain discovery.
                     </Dialog.Description>
                   ) : null}
 
